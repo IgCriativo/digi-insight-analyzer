@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import LandingPage from '../components/LandingPage';
 import LoadingAnalysis from '../components/LoadingAnalysis';
 import LeadCaptureModal from '../components/LeadCaptureModal';
@@ -35,6 +36,16 @@ const Index = () => {
 
   return (
     <>
+      {/* Demo Dashboard Link - Remove in production */}
+      <div className="fixed top-4 right-4 z-50">
+        <Link
+          to="/dashboard"
+          className="bg-ig-cyan text-ig-dark px-4 py-2 font-bold text-sm hover:brightness-110 transition-all duration-200"
+        >
+          🚀 Ver Dashboard (Demo)
+        </Link>
+      </div>
+
       {appState === 'landing' && (
         <LandingPage onStartAnalysis={handleStartAnalysis} />
       )}
