@@ -1,5 +1,5 @@
-
 import { Check, X, Smartphone, Shield, Search } from 'lucide-react';
+import ExpertTip from './ExpertTip';
 
 interface WebsiteAnalysisCardProps {
   companyName: string;
@@ -17,6 +17,12 @@ const WebsiteAnalysisCard = ({ companyName, city }: WebsiteAnalysisCardProps) =>
       <Check className="w-5 h-5 text-green-400" /> : 
       <X className="w-5 h-5 text-ig-red" />
   );
+
+  const expertTips = {
+    mobile: "Mais de 60% das buscas por negócios locais acontecem no celular. Um site responsivo garante que seus clientes tenham uma boa experiência e não desistam na primeira visita.",
+    ssl: "O 'S' em HTTPS significa 'Seguro'. Sites com esse certificado transmitem confiança aos visitantes e são priorizados pelo Google nas buscas.",
+    seo: "Tags de SEO bem preenchidas (título, descrição, palavras-chave) ajudam o Google a entender do que se trata seu site, melhorando suas chances de aparecer nas buscas relevantes."
+  };
 
   const keywords = [
     `${companyName.split(' ')[0]} em ${city}`,
@@ -36,7 +42,10 @@ const WebsiteAnalysisCard = ({ companyName, city }: WebsiteAnalysisCardProps) =>
         <div className="flex items-start gap-3 p-4 bg-ig-dark/50 border border-ig-gray/20">
           <CheckIcon condition={isMobile} />
           <div className="flex-1">
-            <h4 className="font-semibold text-ig-white mb-1">Otimizado para Celular</h4>
+            <div className="flex items-center gap-2 mb-1">
+              <h4 className="font-semibold text-ig-white">Otimizado para Celular</h4>
+              <ExpertTip tip={expertTips.mobile} />
+            </div>
             <p className="text-ig-gray text-sm flex items-center gap-2">
               <Smartphone className="w-4 h-4" />
               {isMobile ? 'Site responsivo' : 'Não otimizado para mobile'}
@@ -48,7 +57,10 @@ const WebsiteAnalysisCard = ({ companyName, city }: WebsiteAnalysisCardProps) =>
         <div className="flex items-start gap-3 p-4 bg-ig-dark/50 border border-ig-gray/20">
           <CheckIcon condition={hasSSL} />
           <div className="flex-1">
-            <h4 className="font-semibold text-ig-white mb-1">Certificado de Segurança</h4>
+            <div className="flex items-center gap-2 mb-1">
+              <h4 className="font-semibold text-ig-white">Certificado de Segurança</h4>
+              <ExpertTip tip={expertTips.ssl} />
+            </div>
             <p className="text-ig-gray text-sm flex items-center gap-2">
               <Shield className="w-4 h-4" />
               {hasSSL ? 'HTTPS ativo' : 'Sem certificado SSL'}
@@ -60,7 +72,10 @@ const WebsiteAnalysisCard = ({ companyName, city }: WebsiteAnalysisCardProps) =>
         <div className="flex items-start gap-3 p-4 bg-ig-dark/50 border border-ig-gray/20">
           <CheckIcon condition={hasSEO} />
           <div className="flex-1">
-            <h4 className="font-semibold text-ig-white mb-1">Tags de SEO Básicas</h4>
+            <div className="flex items-center gap-2 mb-1">
+              <h4 className="font-semibold text-ig-white">Tags de SEO Básicas</h4>
+              <ExpertTip tip={expertTips.seo} />
+            </div>
             <p className="text-ig-gray text-sm">
               {hasSEO ? 'Meta tags preenchidas' : 'Tags de SEO incompletas'}
             </p>

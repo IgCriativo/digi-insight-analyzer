@@ -21,14 +21,14 @@ const FinalCTACard = () => {
 
         {/* Headline */}
         <h3 className="text-2xl md:text-3xl font-bold mb-4">
-          Gostou da análise? Este é apenas o começo.
+          Viu quanta coisa é possível fazer?
         </h3>
 
         {/* Description */}
         <p className="text-lg mb-8 leading-relaxed max-w-2xl mx-auto">
-          Os problemas apontados podem ser complexos. Nossa equipe na IG Criativo é 
-          especialista em transformar sua presença digital e gerar resultados reais. 
-          Deixe que nossos especialistas cuidem disso para você.
+          Se você não tem tempo ou prefere deixar sua presença digital nas mãos de 
+          especialistas para focar no seu negócio, nós podemos fazer tudo isso e muito mais por você. 
+          Nossa equipe na IG Criativo é especialista em transformar sua presença digital e gerar resultados reais.
         </p>
 
         {/* CTA Buttons */}
@@ -38,7 +38,7 @@ const FinalCTACard = () => {
             className="bg-ig-dark text-ig-gold px-8 py-4 font-bold text-lg hover:bg-ig-dark/90 transition-all duration-200 hover:scale-105 flex items-center justify-center gap-3 mx-auto"
           >
             <MessageCircle className="w-6 h-6" />
-            QUERO AGENDAR UMA CONSULTORIA GRATUITA
+            QUERO A AJUDA DE UM ESPECIALISTA
             <ArrowRight className="w-6 h-6" />
           </button>
 

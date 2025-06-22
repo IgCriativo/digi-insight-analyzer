@@ -1,5 +1,6 @@
 
 import { Check, X, MapPin, Star, Calendar } from 'lucide-react';
+import ExpertTip from './ExpertTip';
 
 interface GoogleAnalysisCardProps {
   companyName: string;
@@ -20,6 +21,12 @@ const GoogleAnalysisCard = ({ companyName, city }: GoogleAnalysisCardProps) => {
       <X className="w-5 h-5 text-ig-red" />
   );
 
+  const expertTips = {
+    profile: "Um perfil completo transmite profissionalismo e ajuda o Google a entender melhor seu negócio. Preencha todas as seções: descrição, horários, fotos, serviços e atributos especiais.",
+    reputation: "Responder a todas as avaliações mostra ao Google que sua empresa está ativa e se importa com os clientes, o que pode melhorar seu posicionamento nas buscas locais.",
+    activity: "Posts regulares no Google Meu Negócio (pelo menos 1 por semana) mantêm seu perfil ativo e podem aparecer nos resultados de busca, gerando mais visibilidade."
+  };
+
   return (
     <div className="ig-card">
       <div className="flex items-center gap-3 mb-6">
@@ -32,7 +39,10 @@ const GoogleAnalysisCard = ({ companyName, city }: GoogleAnalysisCardProps) => {
         <div className="flex items-start gap-3 p-4 bg-ig-dark/50 border border-ig-gray/20">
           <CheckIcon condition={completeness >= 80} />
           <div className="flex-1">
-            <h4 className="font-semibold text-ig-white mb-1">Perfil Completo</h4>
+            <div className="flex items-center gap-2 mb-1">
+              <h4 className="font-semibold text-ig-white">Perfil Completo</h4>
+              <ExpertTip tip={expertTips.profile} />
+            </div>
             <p className="text-ig-gray text-sm mb-2">
               Seu perfil está {completeness}% preenchido
             </p>
@@ -49,7 +59,10 @@ const GoogleAnalysisCard = ({ companyName, city }: GoogleAnalysisCardProps) => {
         <div className="flex items-start gap-3 p-4 bg-ig-dark/50 border border-ig-gray/20">
           <CheckIcon condition={parseFloat(rating) >= 4.0} />
           <div className="flex-1">
-            <h4 className="font-semibold text-ig-white mb-1">Reputação Online</h4>
+            <div className="flex items-center gap-2 mb-1">
+              <h4 className="font-semibold text-ig-white">Reputação Online</h4>
+              <ExpertTip tip={expertTips.reputation} />
+            </div>
             <div className="flex items-center gap-2 text-sm text-ig-gray">
               <Star className="w-4 h-4 text-ig-gold fill-current" />
               <span>{rating} ({reviewCount} avaliações)</span>
@@ -61,7 +74,10 @@ const GoogleAnalysisCard = ({ companyName, city }: GoogleAnalysisCardProps) => {
         <div className="flex items-start gap-3 p-4 bg-ig-dark/50 border border-ig-gray/20">
           <CheckIcon condition={hasRecentPost} />
           <div className="flex-1">
-            <h4 className="font-semibold text-ig-white mb-1">Atividade Recente</h4>
+            <div className="flex items-center gap-2 mb-1">
+              <h4 className="font-semibold text-ig-white">Atividade Recente</h4>
+              <ExpertTip tip={expertTips.activity} />
+            </div>
             <div className="flex items-center gap-2 text-sm text-ig-gray">
               <Calendar className="w-4 h-4" />
               <span>

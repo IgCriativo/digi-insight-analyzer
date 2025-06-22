@@ -1,9 +1,11 @@
-
 import ScoreCard from './ScoreCard';
 import GoogleAnalysisCard from './GoogleAnalysisCard';
 import WebsiteAnalysisCard from './WebsiteAnalysisCard';
 import SocialMediaCard from './SocialMediaCard';
 import FinalCTACard from './FinalCTACard';
+import WeeklyActionCard from './WeeklyActionCard';
+import OptimizationChecklist from './OptimizationChecklist';
+import LocalContentCalendar from './LocalContentCalendar';
 
 interface ReportPageProps {
   companyName: string;
@@ -34,8 +36,11 @@ const ReportPage = ({ companyName, city, leadData }: ReportPageProps) => {
           </p>
         </div>
 
-        {/* Dashboard Grid */}
+        {/* Dashboard Content */}
         <div className="space-y-8">
+          {/* NEW: Weekly Action Card - Top Priority */}
+          <WeeklyActionCard />
+
           {/* Overall Score */}
           <div className="flex justify-center">
             <div className="w-full max-w-md">
@@ -52,6 +57,16 @@ const ReportPage = ({ companyName, city, leadData }: ReportPageProps) => {
           {/* Social Media - Full Width */}
           <div className="max-w-4xl mx-auto">
             <SocialMediaCard companyName={companyName} city={city} />
+          </div>
+
+          {/* NEW: Local Content Calendar */}
+          <div className="max-w-4xl mx-auto">
+            <LocalContentCalendar />
+          </div>
+
+          {/* NEW: Optimization Checklist */}
+          <div className="max-w-4xl mx-auto">
+            <OptimizationChecklist />
           </div>
 
           {/* Final CTA */}
