@@ -2,9 +2,12 @@
 import { useState } from 'react';
 import { TrendingUp, AlertCircle, CheckCircle, Calendar, BarChart3 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import AICreditsDisplay from '../AICreditsDisplay';
+import { useAI } from '../../hooks/useAI';
 
 const DashboardOverview = () => {
   const [weeklyActionCompleted, setWeeklyActionCompleted] = useState(false);
+  const { credits } = useAI();
 
   // Simulando dados do usuário
   const currentScore = 78;
@@ -42,7 +45,7 @@ const DashboardOverview = () => {
       </div>
 
       {/* Score and Evolution Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Current Score */}
         <div className="bg-ig-dark border-2 border-ig-gold p-6">
           <div className="flex items-center justify-between mb-4">
@@ -104,6 +107,9 @@ const DashboardOverview = () => {
             Tendência: <span className="text-ig-cyan font-semibold">Em crescimento 📈</span>
           </p>
         </div>
+
+        {/* AI Credits */}
+        <AICreditsDisplay credits={credits} />
       </div>
 
       {/* Weekly Action */}
@@ -161,7 +167,7 @@ const DashboardOverview = () => {
         <div className="bg-ig-dark border border-ig-gold/30 p-6">
           <h3 className="text-xl font-bold text-ig-white mb-4 flex items-center gap-2">
             <BarChart3 className="w-6 h-6 text-ig-gold" />
-            Ações Rápidas
+            Ações Rápidas com IA
           </h3>
           
           <div className="space-y-3">
@@ -177,16 +183,16 @@ const DashboardOverview = () => {
               to="/social-planner"
               className="block w-full p-3 bg-ig-cyan/20 border border-ig-cyan/50 text-ig-white hover:bg-ig-cyan/30 transition-colors"
             >
-              <span className="font-semibold">📅 Abrir Planejador Social</span>
-              <p className="text-sm text-ig-gray mt-1">Organize seu conteúdo das redes sociais</p>
+              <span className="font-semibold">✨ Criar Conteúdo com IA</span>
+              <p className="text-sm text-ig-gray mt-1">Gere posts inteligentes para redes sociais</p>
             </Link>
             
             <Link
               to="/reputation"
               className="block w-full p-3 bg-ig-gold/20 border border-ig-gold/50 text-ig-white hover:bg-ig-gold/30 transition-colors"
             >
-              <span className="font-semibold">⭐ Gerenciar Reputação</span>
-              <p className="text-sm text-ig-gray mt-1">Responda avaliações e monitore sua reputação</p>
+              <span className="font-semibold">🤖 Responder Avaliações com IA</span>
+              <p className="text-sm text-ig-gray mt-1">Respostas inteligentes e personalizadas</p>
             </Link>
           </div>
         </div>

@@ -13,6 +13,7 @@ import LocalSEO from "./pages/LocalSEO";
 import Learning from "./pages/Learning";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import AIAssistant from "./components/AIAssistant";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <AIAssistant />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
