@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   FileText, 
@@ -9,7 +9,8 @@ import {
   Search, 
   Settings,
   Menu,
-  X
+  X,
+  LogOut
 } from 'lucide-react';
 
 interface DashboardLayoutProps {
@@ -19,6 +20,7 @@ interface DashboardLayoutProps {
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navigation = [
     { name: 'Painel Principal', href: '/dashboard', icon: LayoutDashboard },
@@ -26,9 +28,18 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     { name: 'Reputação Online', href: '/reputation', icon: MessageSquare },
     { name: 'Planejador Social', href: '/social-planner', icon: Calendar },
     { name: 'SEO Local', href: '/local-seo', icon: Search },
-    { name: 'Capacitação', href: '/learning', icon: FileText },
+    { name: 'Guia Rápido', href: '/learning', icon: FileText },
     { name: 'Configurações', href: '/settings', icon: Settings },
   ];
+
+  const handleLogout = () => {
+    // Simular logout - em produção seria com Supabase
+    const confirmLogout = window.confirm('Você tem certeza que deseja sair?');
+    if (confirmLogout) {
+      // Aqui seria supabase.auth.signOut()
+      navigate('/login');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-ig-dark flex">
@@ -48,7 +59,10 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="flex items-center justify-between h-16 px-6 border-b border-ig-gold/30">
-            <h1 className="text-xl font-bold text-ig-gold">IG CRIATIVO</h1>
+            <div>
+              <h1 className="text-xl font-bold text-ig-gold">IG CRIATIVO</h1>
+              <p className="text-xs text-ig-gray">Plataforma PRO</p>
+            </div>
             <button
               onClick={() => setSidebarOpen(false)}
               className="lg:hidden text-ig-gray hover:text-ig-white"
@@ -79,6 +93,15 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 </Link>
               );
             })}
+            
+            {/* Logout Button */}
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-ig-red hover:text-ig-white hover:bg-ig-red/10 transition-colors"
+            >
+              <LogOut className="w-5 h-5" />
+              Sair
+            </button>
           </nav>
 
           {/* User info */}
@@ -88,7 +111,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 <span className="text-ig-gold text-sm font-semibold">U</span>
               </div>
               <div>
-                <p className="text-sm font-medium text-ig-white">Usuário</p>
+                <p className="text-sm font-medium text-ig-white">Usuário Demo</p>
                 <p className="text-xs text-ig-gray">Plano Gratuito</p>
               </div>
             </div>
@@ -108,7 +131,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           </button>
           
           <div className="flex items-center gap-4">
-            <span className="text-ig-gray text-sm">Diagnóstico Digital Pro</span>
+            <span className="text-ig-gray text-sm">Copiloto de Marketing Digital com IA</span>
           </div>
         </header>
 
